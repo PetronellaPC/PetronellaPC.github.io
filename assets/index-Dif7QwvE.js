@@ -2726,7 +2726,10 @@ reset();
   <div class="wrap">
     <site-nav current="recurrent_neural_network_animation.html"></site-nav>
     <h1>Recurrent neural network: 2 stacked layers, sequence training and BPTT</h1>
-    <p class="sub">This RNN is <b>2 stacked recurrent layers</b> (each with 5 hidden units), 3 input features per time step, 2 softmax outputs, and 4 time steps. Layer 1 reads x<sup>&lt;t&gt;</sup>; layer 2 reads layer 1's hidden state a<sup>&lt;t&gt;[1]</sup>. Each layer keeps its own recurrence, and the animation runs two training passes with backpropagation through time.</p>
+    <p class="sub">This RNN has <b>2 stacked recurrent layers</b> (each with 5 hidden units), 3 input features per time
+      step, 2 softmax outputs, and 4 time steps. Layer 1 reads x<sup>&lt;t&gt;</sup>; layer 2 reads layer 1's hidden
+      state a<sup>&lt;t&gt;[1]</sup>. Each layer keeps its own recurrence, and the animation runs two training passes
+      with backpropagation through time.</p>
 
     <div class="architecture-grid">
       <article class="architecture-card">
@@ -2784,7 +2787,7 @@ reset();
             class="arch-small" x="67" y="228">n_x=3</text>
           <rect class="arch-node arch-hidden" x="30" y="120" width="74" height="44" rx="9"></rect><text
             class="arch-label" x="67" y="142">a<tspan baseline-shift="super" font-size="0.7em">⟨t⟩[1]</tspan>
-            </text><text class="arch-small" x="67" y="158">n_a=5</text>
+          </text><text class="arch-small" x="67" y="158">n_a=5</text>
           <rect class="arch-node arch-hidden" x="30" y="50" width="74" height="44" rx="9"></rect><text
             class="arch-label" x="67" y="72">a<tspan baseline-shift="super" font-size="0.7em">⟨t⟩[2]</tspan></text><text
             class="arch-small" x="67" y="88">n_a=5</text>
@@ -2925,7 +2928,8 @@ reset();
         <table class="equation-table">
           <tr>
             <th><span class="eq">Tanh function</span></th>
-            <td><span class="eq">tanh(z) = (e<sup>z</sup> − e<sup>−z</sup>) / (e<sup>z</sup> + e<sup>−z</sup>)</span></td>
+            <td><span class="eq">tanh(z) = (e<sup>z</sup> − e<sup>−z</sup>) / (e<sup>z</sup> + e<sup>−z</sup>)</span>
+            </td>
           </tr>
           <tr>
             <th><span class="eq">Layer 1 hidden a<sup>&lt;t&gt;[1]</sup></span></th>
@@ -2941,7 +2945,8 @@ reset();
           </tr>
           <tr>
             <th><span class="eq">Prediction ŷ<sup>&lt;t&gt;</sup></span></th>
-            <td><span class="eq">ŷ<sup>&lt;t&gt;</sup> = <a class="equation-link" href="/ml-animations/softmax">softmax</a>( W<sub>ya</sub> a<sup>&lt;t&gt;[2]</sup> +
+            <td><span class="eq">ŷ<sup>&lt;t&gt;</sup> = <a class="equation-link"
+                  href="/ml-animations/softmax">softmax</a>( W<sub>ya</sub> a<sup>&lt;t&gt;[2]</sup> +
                 b<sub>y</sub> )</span></td>
           </tr>
           <tr>
@@ -3771,8 +3776,7 @@ reset();
   <\/script>
 </body>
 
-</html>
-`,a2=`<!DOCTYPE html>
+</html>`,a2=`<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
