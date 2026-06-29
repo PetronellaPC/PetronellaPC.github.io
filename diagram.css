@@ -1,0 +1,733 @@
+/* ============================================================
+   Shared styles for the SVG diagram animations
+   (matrix multiplication, neural network, recurrent network).
+   These three pages render large SVG diagrams and share one
+   identical design — edit here to update all of them at once.
+   Page chrome (body, h1, .wrap, .sub, .card, buttons, controls)
+   lives in theme.css and is shared by every animation.
+   ============================================================ */
+:root {
+  --a: #1d64ff;
+  --b: #e05a2f;
+  --c: #1f9d57;
+}
+
+/* active / backward / update */
+
+/* same panel look as theme.css .card, plus positioning for SVG overlays */
+.stage {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid #e3e8f2;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 40px rgba(20, 30, 60, 0.10);
+}
+
+.section {
+  margin-top: 34px;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.label {
+  fill: var(--ink);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.small-label {
+  fill: var(--muted);
+  font-size: 14px;
+}
+
+.cell {
+  fill: #ffffff;
+  stroke: var(--grid);
+  stroke-width: 1.5;
+  rx: 5;
+}
+
+.cell-text {
+  fill: var(--ink);
+  font-size: 18px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.cell-formula {
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.cell-result {
+  fill: var(--ink);
+  font-size: 24px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.highlight-a {
+  fill: #dbeafe;
+  stroke: var(--a);
+  stroke-width: 3;
+}
+
+.highlight-b {
+  fill: #ffe7dd;
+  stroke: var(--b);
+  stroke-width: 3;
+}
+
+.highlight-c {
+  fill: #dcf3e6;
+  stroke: var(--c);
+  stroke-width: 3;
+}
+
+.dimmed {
+  opacity: 0.28;
+}
+
+.blue {
+  fill: var(--a);
+}
+
+.orange {
+  fill: var(--b);
+}
+
+.black {
+  fill: var(--ink);
+}
+
+.status {
+  fill: var(--muted);
+  font-size: 15px;
+}
+
+.nn-node {
+  fill: #ffffff;
+  stroke: #9aa9b8;
+  stroke-width: 2;
+}
+
+.nn-node-active {
+  fill: #dbeafe;
+  stroke: var(--a);
+  stroke-width: 3;
+}
+
+.nn-node-back {
+  fill: #ffe7dd;
+  stroke: var(--b);
+  stroke-width: 3;
+}
+
+.nn-node-update {
+  fill: #dcf3e6;
+  stroke: var(--c);
+  stroke-width: 3;
+}
+
+.nn-edge {
+  stroke: #d6dee8;
+  stroke-width: 1.2;
+}
+
+.nn-edge-active {
+  stroke: var(--a);
+  stroke-width: 2.4;
+}
+
+.nn-edge-back {
+  stroke: var(--b);
+  stroke-width: 2.4;
+}
+
+.nn-panel {
+  fill: #fbfcfd;
+  stroke: #dfe5ec;
+  stroke-width: 1.5;
+  rx: 8;
+}
+
+.nn-title {
+  fill: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.nn-formula {
+  fill: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nn-layer-label {
+  fill: var(--muted);
+  font-size: 13px;
+  text-anchor: middle;
+}
+
+.nn-scroll-panel {
+  position: static;
+  width: 100%;
+  height: 150px;
+  overflow: auto;
+  padding: 10px 12px;
+  margin: 12px 0 0;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  background: #fbfcfd;
+  color: var(--muted);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.35;
+  pointer-events: auto;
+}
+
+.nn-scroll-panel p {
+  margin: 0 0 5px;
+  white-space: nowrap;
+}
+
+.nn-scroll-panel .muted {
+  color: #7b8b9c;
+  white-space: normal;
+}
+
+.formula-title {
+  fill: var(--muted);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.formula-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+
+.formula-card {
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #dfe5ec;
+  color: var(--ink);
+  padding: 14px 16px;
+  overflow-x: visible;
+}
+
+.formula-card h3 {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.math-formula {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-height: 42px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.frac {
+  display: inline-grid;
+  grid-template-rows: auto auto;
+  align-items: center;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.frac span:first-child {
+  border-bottom: 1px solid currentColor;
+  padding: 0 4px 3px;
+}
+
+.frac span:last-child {
+  padding-top: 3px;
+}
+
+.sum {
+  display: inline-block;
+  position: relative;
+  font-size: 30px;
+  line-height: 1;
+  padding: 0 8px;
+}
+
+.sum sup,
+.sum sub {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.sum sup {
+  top: -13px;
+}
+
+.sum sub {
+  bottom: -13px;
+}
+
+.reference {
+  margin-top: 28px;
+  background: white;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 16px 34px rgba(23, 32, 42, 0.06);
+}
+
+.reference h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.reference .subhead {
+  margin-top: 22px;
+  font-size: 20px;
+}
+
+.equation-table-wrap {
+  overflow: auto;
+}
+
+.equation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.equation-table th,
+.equation-table td {
+  border-top: 1px solid #e4e9ef;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.equation-table th {
+  width: 250px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 13px;
+  color: #1f2937;
+  white-space: nowrap;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 12px;
+}
+
+.matrix-card {
+  border: 1px solid #e1e7ee;
+  border-radius: 8px;
+  padding: 10px;
+  min-width: 0;
+  background: #fbfcfd;
+}
+
+.matrix-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.matrix-card h3 span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.matrix-scroll {
+  overflow-x: auto;
+}
+
+.matrix-card table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.matrix-card td {
+  border: 1px solid #e3e9f0;
+  padding: 5px 7px;
+  text-align: right;
+  background: white;
+}
+
+.summary-card p {
+  margin: 6px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.architecture-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.architecture-card {
+  background: white;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 12px 24px rgba(23, 32, 42, 0.05);
+}
+
+.architecture-card h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.architecture-card svg {
+  width: 100%;
+  height: auto;
+}
+
+.network-detail-stage {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 220px;
+  margin: 16px 0 0;
+  padding: 18px 20px;
+  overflow: auto;
+  overflow-anchor: none;
+  scrollbar-gutter: stable;
+  border: 1px solid #e3e8f2;
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: 0 12px 40px rgba(20, 30, 60, 0.1);
+  color: var(--ink);
+  text-align: left;
+}
+
+.network-detail-stage h2 {
+  margin: 0 0 4px;
+  font-size: 17px;
+}
+
+.network-detail-desc,
+.network-detail-sample {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.network-detail-formula {
+  margin: 12px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+}
+
+.network-detail-body {
+  margin: 10px 0;
+}
+
+.network-detail-body p {
+  margin: 5px 0;
+}
+
+.network-detail-stage>*,
+.network-detail-body p {
+  min-width: max-content;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.arch-node {
+  fill: #ffffff;
+  stroke: #9aa9b8;
+  stroke-width: 2;
+}
+
+.arch-input {
+  fill: #dbeafe;
+  stroke: var(--a);
+}
+
+.arch-hidden {
+  fill: #ffe7dd;
+  stroke: var(--b);
+}
+
+.arch-output {
+  fill: #dcf3e6;
+  stroke: var(--c);
+}
+
+.arch-line {
+  stroke: #8ca0b3;
+  stroke-width: 2;
+  fill: none;
+}
+
+.arch-label {
+  fill: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.arch-small {
+  fill: var(--muted);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.arch-param {
+  fill: #7c3aed;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: Georgia, "Times New Roman", serif;
+  text-anchor: middle;
+}
+
+/* Inline professional math (HTML) */
+.eq {
+  font-family: Georgia, "Times New Roman", serif;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.eq sub {
+  font-size: 0.68em;
+  vertical-align: -0.28em;
+  padding: 0 0.3px;
+}
+
+.eq sup {
+  font-size: 0.68em;
+  vertical-align: 0.55em;
+  padding: 0 0.3px;
+}
+
+.equation-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.formula-card .eq {
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  line-height: 1.5;
+}
+
+/* RNN scene: square nodes and parameter annotations */
+.rnn-node-box {
+  fill: #ffffff;
+  stroke: #9aa9b8;
+  stroke-width: 2;
+}
+
+.rnn-cell-frame {
+  fill: none;
+  stroke: #c3ccd6;
+  stroke-width: 1.4;
+  stroke-dasharray: 6 4;
+}
+
+.rnn-cell-frame-label {
+  fill: #9aa9b8;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.rnn-param {
+  fill: #7c3aed;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: Georgia, "Times New Roman", serif;
+  text-anchor: middle;
+}
+
+.rnn-node-label {
+  fill: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+.rnn-svg-eq {
+  fill: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+}
+
+.rnn-svg-eq-small {
+  fill: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+}
+
+
+
+@media (max-width: 720px) {
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  .wrap,
+  .stage,
+  .reference,
+  .architecture-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .sub {
+    font-size: 13px;
+  }
+
+  .stage {
+    padding: 12px;
+    border-radius: 14px;
+    overflow: hidden;
+    overflow-anchor: none;
+  }
+
+  .stage>svg {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  control-bar {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .controls {
+    width: 100%;
+    height: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    align-content: flex-start;
+    overflow: hidden;
+  }
+
+  .network-detail-stage {
+    width: 100%;
+    max-width: 100%;
+    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
+    padding: 15px 14px;
+    border-radius: 14px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    contain: size layout;
+  }
+
+  .network-detail-stage>*,
+  .network-detail-body p {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .network-detail-stage h2 {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .network-detail-desc,
+  .network-detail-sample,
+  .network-detail-body {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .network-detail-formula {
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .network-detail-formula span,
+  .network-detail-body span {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .formula-card {
+    min-width: 0;
+    padding: 12px 13px;
+    overflow: hidden;
+  }
+
+  .formula-card h3 {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .math-formula,
+  .formula-card .eq {
+    min-width: 0;
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 1.45;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+}

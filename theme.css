@@ -1,0 +1,234 @@
+/* ============================================================
+   Shared theme for all ML animation pages.
+   Universal palette, base layout, the top navigation menu, and
+   the control-bar buttons live here. Page-specific styles
+   (canvas sizes, SVG node classes, grids…) stay in each file.
+   Semantic role colors --a / --b / --c are page-specific and
+   are declared in each page's own <style>.
+   ============================================================ */
+:root {
+  --bg: #f5f7fb;
+  --paper: #f5f7fb;
+  --panel: #ffffff;
+  --panel-2: #eef1f7;
+  --ink: #17202a;
+  --muted: #5d6d7e;
+  --accent: #2563eb;
+  --art-text-shadow: 0 0 4em white, 0 0 .6em white;
+  --good: #1f9d57;
+  --gold: #c08a00;
+  --grid: #d5dce5;
+  --border: #d8deea;
+  --hot: #fff1b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 28px 18px 90px;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(1200px 700px at 70% -10%, #ffffff 0%, var(--bg) 55%);
+  line-height: 1.55;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0 0 4px;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 0 0 2px;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.sub {
+  color: var(--muted);
+  margin: 0 0 24px;
+  font-size: 14px;
+}
+
+/* top navigation menu — rendered by the <site-nav> custom element */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 22px;
+  margin: 0 0 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-nav-home {
+  margin-right: auto;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.site-nav-home:hover {
+  color: var(--accent);
+}
+
+.site-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
+.site-nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+
+.site-nav-links a:hover {
+  color: var(--ink);
+}
+
+.site-nav-links a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* buttons + control bar — rendered by the <control-bar> custom element */
+button {
+  appearance: none;
+  background: var(--panel-2);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  padding: 9px 16px;
+  border-radius: 9px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background .15s, transform .05s;
+}
+
+button:hover {
+  background: #e7ebf4;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+button.primary:hover {
+  background: #2159f3;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* card / panel + math + legend, shared by the math-style animations */
+.card {
+  background: var(--panel);
+  border: 1px solid #e3e8f2;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 40px rgba(20, 30, 60, 0.10);
+}
+
+.row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.grow {
+  flex: 1 1 360px;
+  min-width: 320px;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.math {
+  font-family: "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  background: var(--panel-2);
+  border-radius: 12px;
+  padding: 18px;
+  font-size: 15px;
+  min-height: 200px;
+}
+
+.math .line {
+  margin: 6px 0;
+  transition: opacity .4s, transform .4s;
+}
+
+.math .line.dim {
+  opacity: 0.28;
+}
+
+.math .step-label {
+  color: var(--accent);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.big {
+  font-size: 22px;
+}
+
+.formula {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.res {
+  color: var(--good);
+  font-weight: 600;
+}
+
+.vA {
+  color: var(--a);
+}
+
+.vB {
+  color: var(--b);
+}
